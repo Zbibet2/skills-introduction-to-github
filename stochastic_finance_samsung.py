@@ -12,7 +12,6 @@ des actions Samsung Electronics, incluant:
 import numpy as np
 from scipy.stats import norm
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
 
 
 class BlackScholesModel:
@@ -36,6 +35,15 @@ class BlackScholesModel:
         sigma : float
             Volatilité (Volatility)
         """
+        if S0 <= 0:
+            raise ValueError("Stock price S0 must be positive")
+        if K <= 0:
+            raise ValueError("Strike price K must be positive")
+        if T <= 0:
+            raise ValueError("Time to maturity T must be positive")
+        if sigma <= 0:
+            raise ValueError("Volatility sigma must be positive")
+        
         self.S0 = S0
         self.K = K
         self.T = T
@@ -111,6 +119,17 @@ class MonteCarloSimulation:
         n_simulations : int
             Nombre de simulations (Number of simulations)
         """
+        if S0 <= 0:
+            raise ValueError("Initial stock price S0 must be positive")
+        if sigma < 0:
+            raise ValueError("Volatility sigma must be non-negative")
+        if T <= 0:
+            raise ValueError("Time horizon T must be positive")
+        if dt <= 0:
+            raise ValueError("Time step dt must be positive")
+        if n_simulations <= 0:
+            raise ValueError("Number of simulations must be positive")
+        
         self.S0 = S0
         self.mu = mu
         self.sigma = sigma
