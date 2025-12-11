@@ -189,11 +189,18 @@ Ajoutez cette ligne au début du notebook:
 
 ### Problème: Style seaborn manquant / Seaborn style missing
 
+**Note**: Les styles seaborn ont été retirés de matplotlib 3.6+. Si vous rencontrez cette erreur, installez seaborn séparément.
+
 **Solution**:
-Remplacez `plt.style.use('seaborn-v0_8-darkgrid')` par:
+```bash
+# Installer seaborn
+pip install seaborn
+```
+
+Ou remplacez `plt.style.use('seaborn-v0_8-darkgrid')` par:
 ```python
 plt.style.use('default')
-# Ou
+# Ou avec seaborn installé
 import seaborn as sns
 sns.set_style("darkgrid")
 ```
